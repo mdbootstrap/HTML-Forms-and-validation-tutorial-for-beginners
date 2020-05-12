@@ -1,0 +1,237 @@
+<style>
+    img {
+        max-width: 99%;
+        max-height: 99%;    
+    }
+</style>
+
+
+
+<h2>Input types file</h2>
+
+
+<p>HTML comes with a range od predefined input types to allow us accept any input from the user.</p>
+
+<h2>Text</h2>
+<p>All inputs which we've been using so far didn't have type specified. The default type is "text" </p>
+
+<pre><code>
+    &lt;input name=&quot;name&quot; id=&quot;name&quot; type=&quot;text&quot; placeholder=&quot;First name&quot; &gt;&#13;&#10;</code></pre>
+
+<h2>Password</h2>
+
+<p>When it come to password, you don't want to show typed chars on the screen.</p>
+
+<p>In order to hide them we can use input type of password: </p>
+
+<pre><code>
+    <input name="password" type="password">
+</code></pre>
+
+
+
+<img src="assets/password.gif" alt="password">
+
+
+<h2>Number</h2>
+
+<p>When it comes to numeric data we can use input type of number:</p>
+
+<pre><code>
+    &lt;div&gt;&#13;&#10;        &lt;label for=&quot;age&quot;&gt;Age:&lt;/label&gt;&#13;&#10;        &lt;input name=&quot;age&quot; type=&quot;number&quot;&gt;&#13;&#10;    &lt;/div&gt;
+</code></pre>
+
+<p>This will show a special input with keys (up and down) and also allow us to use arrow keys to change the input. </p>
+
+<img src="assets/number.gif" alt="number">
+
+<p>While using number input we can also specify a minimum and maximum value:</p>
+
+<pre><code>
+    &lt;input name=&quot;age&quot; type=&quot;number&quot; min=&quot;20&quot; max=&quot;100&quot;&gt;&#13;&#10;</code></pre>
+
+<img src="assets/minmax.gif" alt="min max value">
+
+<p>Now when use try to submit value outside the allowed range it will show him an error. </p>
+
+<p>We will learn more about validation in the next lesson - <a href="4-html-validation.html">HTML validation.</a> </p>
+
+<p>We can also specify a step which will be used when user uses arrows or keyboard:</p>
+
+<pre><code>
+    &lt;input name=&quot;age&quot; type=&quot;number&quot; min=&quot;20&quot; max=&quot;100&quot; step=&quot;5&quot;&gt;&#13;&#10;
+</code></pre>
+
+<img src="assets/step.gif" alt="step">
+
+
+<h2>Date</h2>
+
+<p>Another input type is date:</p>
+
+<pre><code>
+    &lt;div&gt;&#13;&#10;        &lt;label for=&quot;date&quot;&gt;Date:&lt;/label&gt;&#13;&#10;        &lt;input name=&quot;date&quot; type=&quot;date&quot;&gt;&#13;&#10;    &lt;/div&gt;
+</code></pre>
+
+<p>This allows use to type in date, or choose it from a small date picker:</p>
+
+<img src="assets/date.gif" alt="Date picker">
+
+
+<p>Similarly to number we can specify min and max date. This will grey out date from calendar and doesn't allow us to submit. If user type in date outside the allowed range it will show error on submit.</p>
+
+<img src="assets/mindate.gif" alt="Min date">
+
+
+<h2>Checkboxes</h2>
+<p>When we want user to choose from predefined options we can use checkbox, i.e.</p>
+
+
+<pre><code>
+    &lt;div&gt;&#13;&#10;        &lt;label for=&quot;Pizza&quot;&gt;Pizza&lt;/label&gt;&#13;&#10;        &lt;input type=&quot;checkbox&quot; name=&quot;pizza&quot; id=&quot;pizza&quot;&gt;&#13;&#10;    &lt;/div&gt;&#13;&#10;    &lt;div&gt;&#13;&#10;        &lt;label for=&quot;Pasta&quot;&gt;Pasta&lt;/label&gt;&#13;&#10;        &lt;input type=&quot;checkbox&quot; name=&quot;pasta&quot; id=&quot;pasta&quot;&gt;&#13;&#10;    &lt;/div&gt;
+</code></pre>
+
+<p>Note that user can check both options or none.</p>
+
+<img src="assets/checkbox.gif" alt="checkbox">
+
+
+<h2>Radio</h2>
+
+<p>Sometimes we want users to choose only one option, in that case we can use radio type:</p>
+
+<pre><code>
+    &lt;div&gt;&#13;&#10;        Gender&#13;&#10;        &lt;div&gt;&#13;&#10;            &lt;label for=&quot;male&quot;&gt;Male&lt;/label&gt;&#13;&#10;            &lt;input type=&quot;radio&quot; name=&quot;gender&quot; id=&quot;male&quot; value=&quot;male&quot;&gt;&#13;&#10;        &lt;/div&gt;&#13;&#10;        &lt;div&gt;&#13;&#10;            &lt;label for=&quot;female&quot;&gt;Female&lt;/label&gt;&#13;&#10;            &lt;input type=&quot;radio&quot; name=&quot;gender&quot; id=&quot;female&quot; value=&quot;female&quot;&gt;&#13;&#10;        &lt;/div&gt;&#13;&#10;    &lt;/div&gt;
+</code></pre>
+
+<p><strong>NOTE!</strong> When we use radio, we have to provide the same name to both inputs so they know that these options are related to each other!</p>
+
+<img src="assets/radio.gif" alt="radio input">
+
+<p>Since we can have only gender, we want user to choose only one option. When he/she change it's choice, the other radio automatically gets unchecked.</p>
+
+<p>Another important thing to remember is that when you use radio inputs , <strong>you have to specify a value</strong></p>
+
+<h2>Select</h2>
+
+<p>Another very common element is select. Note that <strong>this is not a input tag</strong>.</p>
+
+<p>Example:</p>
+
+<pre><code>
+    <div>
+        <label for="eyeColor">Eye Color</label>
+        <select name="eyeColor" id="eyeColor">
+            <option value="Green">Green</option>
+            <option label="Red" value="Red"></option>
+        </select>
+    </div>
+</code></pre>
+
+<p><strong>Note!</strong> You can specify a label of the option in two ways: 
+
+<ul>
+    <li>In between &lt;option&gt;myValue&lt;/option&gt; tags  </li>
+    <li>Using <i>label</i> attribute: label="Red"</li>
+</ul></p>
+<img src="assets/select.gif" alt="Select">
+
+
+<p><strong>Note!</strong> Similarly to radio buttons - you also have to specify a value attribute for options. Otherwise you will get empty result</p>
+
+<p>While using select, you can also add <i>multiple</i> attribute which allows to select more than one option using a CTRL key button.</p>
+
+<pre><code>
+    &lt;select name=&quot;eyeColor&quot; id=&quot;eyeColor&quot; multiple&gt; &#13;&#10;
+</code></pre>
+
+<img src="assets/selectmultiple.gif" alt="Select multiple">
+
+<p>As you can see this will also change the way select looks like.</p>
+
+<h2>Textarea</h2>
+
+
+<p>Sometimes we want let user to provide a more text, in order to do that we can use &lt;textarea&gt;&lt;/textarea&gt; tags.</p>
+
+<pre><code>
+    &lt;div&gt;&#13;&#10;        &lt;label for=&quot;desc&quot;&gt;Description&lt;/label&gt;&#13;&#10;        &lt;textarea id=&quot;desc&quot; name=&quot;desc&quot;&gt;&lt;/textarea&gt;&#13;&#10;    &lt;/div&gt;
+</code></pre>
+
+
+<img src="assets/textarea .gif" alt="textarea">
+
+<p>As you seen, user can resize it , but we can also specify it size either using CSS, or attributes <i>cols</i> and <i>rows</i>:</p>
+
+<textarea name="" id="" cols="30" rows="10"></textarea>
+
+<p>Note that textarea accepts all white chars , so whatever you put in between tags will be rendered - even extra new lines.</p>
+
+
+<h2>FileInput</h2>
+
+<p>Another important input type is one which allows us to select files:</p>
+
+<pre><code>
+    &lt;div&gt;&#13;&#10;        &lt;label for=&quot;file&quot;&gt;File&lt;/label&gt;&#13;&#10;        &lt;input id=&quot;file&quot; type=&quot;file&quot; name=&quot;file&quot;&gt;&#13;&#10;    &lt;/div&gt;
+</code></pre>
+
+
+<p>In order to make it working, we have to add <i>enctype</i> property to our form: </p>
+
+<pre><code>
+    &lt;form action=&quot;results.html&quot; method=&quot;GET&quot; enctype=&quot;multipart/form-data&quot;&gt;&#13;&#10;    </code></pre>
+
+    <p>This will tell browser to send form in chunks since files might be big and require to be send in few parts.</p>
+
+    <p>We will have another tutorial on how to handle files on the backend file to really transfer it to our application. </p>
+
+
+<h2>Others</h2>
+
+
+<p>There are bunch of other input types like email, tel or url which are very helpful when you browse website on a mobile device since they display a dedicated keyboard. I.e. for <i>tel</i> type, there a phone will display a keyboard with only numbers and signs, without characters. </p>
+
+
+<pre><code>
+    &lt;div&gt;&#13;&#10;        &lt;label for=&quot;phone&quot;&gt;Phone&lt;/label&gt;&#13;&#10;        &lt;input type=&quot;tel&quot; name=&quot;phone&quot; id=&quot;phone&quot;&gt;&#13;&#10;      &lt;/div&gt;&#13;&#10;      &lt;div&gt;&#13;&#10;        &lt;label for=&quot;url&quot;&gt;URL&lt;/label&gt;&#13;&#10;        &lt;input type=&quot;url&quot; name=&quot;url&quot; id=&quot;url&quot;&gt;&#13;&#10;      &lt;/div&gt;&#13;&#10;      &lt;div&gt;&#13;&#10;        &lt;label for=&quot;email&quot;&gt;Email&lt;/label&gt;&#13;&#10;        &lt;input type=&quot;email&quot; name=&quot;email&quot; id=&quot;email&quot; required&gt;&#13;&#10;      &lt;/div&gt;
+
+</code></pre>
+
+
+<h2>Remaining</h2>
+
+<p>But there are more than that, we won't cover them in this tutorial but for you to know, the full list of available input types:</p>
+
+<pre><code>
+
+    type=" "	    Description
+
+    text 	    Defines a one-line text input field
+    password	    Defines a one-line password input field
+    submit	    Defines a submit button to submit the form to server
+    reset	    Defines a reset button to reset all values in the form.
+    radio	    Defines a radio button which allows select one option.
+    checkbox	    Defines checkboxes which allow select multiple options form.
+    button	    Defines a simple push button, which can be programmed to perform a task on an event.
+    file	    Defines to select the file from device storage.
+    image	    Defines a graphical submit button.
+
+    HTML5 added new types on &lt;input&gt; element. Following is the list of types of elements of HTML5
+    
+    color	    Defines an input field with a specific color.
+    date	    Defines an input field for selection of date.
+    datetime-local  Defines an input field for entering a date without time zone.
+    email           Defines an input field for entering an email address.
+    month	    Defines a control with month and year, without time zone.
+    number          Defines an input field to enter a number.
+    url             Defines a field for entering URL
+    week	    Defines a field to enter the date with week-year, without time zone.
+    search	    Defines a single line text field for entering a search string.
+    tel	            Defines an input field for entering the telephone number.
+</code></pre>
+
+
+<p>Now let's learn more about <a href="4-html-validation.html"> built in validations</a>.</p>
+
+

@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <form action="results.html" method="GET" enctype="multipart/form-data">
+        <div>
+            <label for="name">Name</label>
+            <input name="name" id="name" type="text" placeholder="First name">
+        </div>
+        <div>
+            <label for="password">Password:</label>
+            <input name="password" type="password">
+        </div>
+        <div>
+            <label for="age">Age:</label>
+            <input name="age" type="number" min="20" max="100" step="5">
+        </div>
+        <div>
+            <label for="date">Date:</label>
+            <input name="date" type="date" min="2020-05-15" max="2021-05-01">
+        </div>
+        <div>
+            Food:
+            <div>
+                <label for="Pizza">Pizza</label>
+                <input type="checkbox" name="pizza" id="pizza">
+            </div>
+            <div>
+                <label for="Pasta">Pasta</label>
+                <input type="checkbox" name="pasta" id="pasta">
+            </div>
+        </div>
+        <div>
+            Gender
+            <div>
+                <label for="male">Male</label>
+                <input type="radio" name="gender" id="male" value="male">
+            </div>
+            <div>
+                <label for="female">Female</label>
+                <input type="radio" name="gender" id="female" value="female">
+            </div>
+        </div>
+        <div>
+            <label for="eyeColor">Eye Color</label>
+            <select name="eyeColor" id="eyeColor" multiple>
+                <option value="Green">Green</option>
+                <option label="Red" value="Red"></option>
+                <option label="Blue" value="Blue"></option>
+            </select>
+        </div>
+        <div>
+            <label for="desc">Description</label>
+            <textarea id="desc" name="desc" cols="30" rows="10"></textarea>
+        </div>
+        <div>
+            <label for="file">File</label>
+            <input id="file" type="file" name="file">
+        </div>
+        <div>
+            <label for="phone">Phone</label>
+            <input type="tel" name="phone" id="phone">
+        </div>
+        <div>
+            <label for="url">URL</label>
+            <input type="url" name="url" id="url">
+        </div>
+        <div>
+            <label for="email">Email</label>
+            <input type="email" name="email" id="email" required>
+        </div>
+        <button type="reset">Reset</button>
+        <button type="submit">Submit</button>
+    </form>
+
+</body>
+
+</html>

@@ -1,0 +1,199 @@
+<style>
+    img {
+        max-width: 99%;
+        max-height: 99%;    
+    }
+</style>
+
+
+<h2>What we will learn during ths tutorial?</h2>
+
+<ol>
+  <li>How to create HTML Forms</li>
+  <li>How to submit / reset form</li>
+  <li>What are different input types</li>
+  <li>How to perform validation</li>
+</ol>
+
+<h1>HTML Forms</h1>
+
+
+<p>Forms are on of the most important part of every website, they allow to interact with users, and get information from here. </p>
+
+<p>Let's start with basic HTML setup:</p>
+
+
+<pre><code>
+  &lt;!DOCTYPE html&gt;&#13;&#10;  &lt;html lang=&quot;en&quot;&gt;&#13;&#10;  &lt;head&gt;&#13;&#10;      &lt;meta charset=&quot;UTF-8&quot;&gt;&#13;&#10;      &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;&gt;&#13;&#10;      &lt;title&gt;Forms&lt;/title&gt;&#13;&#10;  &lt;/head&gt;&#13;&#10;  &lt;body&gt;&#13;&#10;      &#13;&#10;  &lt;/body&gt;&#13;&#10;  &lt;/html&gt;
+</code></pre>
+
+<p><i>Note:</i> You can generate this setup using Emmet by typing ! (exclamation mark) and pressing Tab key.</p>
+
+
+<p>Now let's create a basic form. Imagine that we want to create a registration form. </p>
+
+<h2>Form</h2>
+
+<p>In order to create form we will use &lt;form&gt; tag:</p>
+<pre><code>
+  &lt;form&gt;&#13;&#10;        &#13;&#10;  &lt;/form&gt;
+</code></pre>
+
+
+<p>This form will by default submit form to same page, we can change that using form attributes but first let's add some inputs:</p>
+
+
+<h2>Inputs and labels</h2>
+
+<pre><code>
+&lt;form&gt;&#13;&#10;  &lt;input&gt;&#13;&#10;&lt;/form&gt;
+</code></pre>
+
+
+
+<p>Let's stop here for a second and note 2 things: </p>
+<ul>
+  <li>Input elements are self closing tags</li>
+  <li>If we want to label it we have to use &lt;label&gt; tags </li>
+</ul>
+
+
+<p>Name and password inputs with labels:</p>
+
+
+<pre><code>
+  &lt;form&gt;&#13;&#10;    &lt;label&gt;Name&lt;/label&gt;&#13;&#10;    &lt;input&gt;&#13;&#10;    &lt;label&gt;Password:&lt;/label&gt;&#13;&#10;    &lt;input&gt;&#13;&#10;  &lt;/form&gt;
+</code></pre>
+
+
+<p>Since they are non-block element (displays next to each other) let's wrap them with div. </p>
+
+
+<pre><code>
+&lt;div&gt;&#13;&#10;    &lt;label&gt;Name&lt;/label&gt;&#13;&#10;    &lt;input&gt;&#13;&#10;&lt;/div&gt;&#13;&#10;&lt;div&gt;&#13;&#10;    &lt;label&gt;Password:&lt;/label&gt;&#13;&#10;    &lt;input&gt;&#13;&#10;&lt;/div&gt;
+</code></pre>
+
+<h2>Submit</h2>
+
+<p>Finally we need some button to submit it:</p>
+
+
+<pre><code>
+  &lt;button&gt;Submit&lt;/button&gt;&#13;&#10;</code></pre>
+
+<p>Now when we submit our form it will send data refresh page and send data to the same page. </p>
+
+<img src="assets/submit.gif" alt="Submit form">
+
+<p>In 99% cases you will want to submit your data either to other page or to handle your form using JS, so how to send data to other page?</p>
+
+<pre><code>
+  &lt;form action=&quot;results.html&quot;&gt;</code></pre>
+
+  <p>This way we will submit our form to page results.html (it doesn't exist yet)</p>
+
+
+  <p>We also want to add another attribute which will specify which method we want to use to submit our data: </p>
+
+<pre><code>
+  &lt;form action=&quot;results.html&quot; method=&quot;GET&quot;&gt;
+</code></pre>
+
+<p>We covered this in our previous <a href="https://github.com/mdbootstrap/AJAX-tutorial-using-JS-and-jQuery-for-beginners">AJAX tutorial</a>.</p>
+
+<p>Let me quickly remind you that we could use either GET or POST method. In order to handle POST method we would need some server (i.e. Apache) and backend language (i.e. PHP). Therefore we will use GET method.</p>
+
+<p>Let's create a results.html file now and paste the following content into it:</p>
+
+<pre><code>
+  &lt;!DOCTYPE html&gt;&#13;&#10;  &lt;html lang=&quot;en&quot;&gt;&#13;&#10;  &lt;head&gt;&#13;&#10;      &lt;meta charset=&quot;UTF-8&quot;&gt;&#13;&#10;      &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;&gt;&#13;&#10;      &lt;title&gt;Results&lt;/title&gt;&#13;&#10;  &lt;/head&gt;&#13;&#10;  &lt;body&gt;&#13;&#10;      &lt;div id=&quot;results&quot;&gt;&lt;/div&gt;&#13;&#10;      &lt;a href=&quot;form.html&quot;&gt;Back to results&lt;/a&gt;&#13;&#10;      &lt;script&gt;&#13;&#10;          const results = document.getElementById(&apos;results&apos;);&#13;&#10;          new URLSearchParams(window.location.search).forEach((value, name) =&gt; {&#13;&#10;              results.append(`${name}:${value}`);&#13;&#10;              results.append(document.createElement(&apos;br&apos;));&#13;&#10;          })&#13;&#10;      &lt;/script&gt;&#13;&#10;  &lt;/body&gt;&#13;&#10;  &lt;/html&gt;
+</code></pre>
+
+<p>This small piece of JavaScript will print all our results submitted via form. Let's test it:</p>
+
+
+<img src="assets/result.gif" alt="results">
+
+<p>Something doesn't work...</p>
+
+<p>This is because our inputs are missing important attribute - name. Let's add it:</p>
+
+<pre><code>
+  &lt;div&gt;&#13;&#10;    &lt;label&gt;Name&lt;/label&gt;&#13;&#10;    &lt;input name=&quot;name&quot;&gt;&#13;&#10;&lt;/div&gt;&#13;&#10;&lt;div&gt;&#13;&#10;    &lt;label&gt;Password:&lt;/label&gt;&#13;&#10;    &lt;input name=&quot;password&quot;&gt;&#13;&#10;&lt;/div&gt;
+</code></pre>
+
+
+<p>Let's test it now: </p>
+
+<img src="assets/name.gif" alt="name attribute">
+
+
+<p>Now it's working fine.</p>
+
+<p>For the sake of test  - change method to POST and check what will happen.</p>
+
+<p>Labels, except for helping us to describe given input have another important role. When we click on it they should automatically set focus on a field which they are referring to.</p>
+
+<p>In order to achieve that we have to: 
+
+  <ol>
+    <li>Add new attribute <i>for</i> </li>
+    <li>Add an <i>id</i> attribute to our input</li>
+    <li>Make sure that <i>for</i> an <i>id</i> values matches.   </li>
+  </ol>
+</p>
+
+<pre><code>
+  &lt;label for=&quot;name&quot;&gt;Name&lt;/label&gt;&#13;&#10;  &lt;input name=&quot;name&quot; id=&quot;name&quot;&gt;
+</code></pre>
+
+<p>Now when we click on the label it will automatically highlight corresponding input. This is also important for accessibility 
+ </p>
+
+<img src="assets/for.gif" alt="for">
+
+
+
+<h2>Submit and reset </h2>
+
+
+<p>If we want to have more buttons in our form , we have to specify which one is responsible for submission. In order to do that we have add type to our button:</p>
+
+<pre><code>
+  &lt;button type=&quot;submit&quot;&gt;Submit&lt;/button&gt;&#13;&#10;
+</code></pre>
+
+
+
+<p>That allows us to add another handy button which helps us to reset all data in a form:</p>
+
+
+<pre><code>
+  <button type="reset">Reset</button>
+</code></pre>
+
+<img src="assets/reset.gif" alt="reset">
+
+
+<h2>Value and placeholder</h2>
+
+
+<p>Sometimes we want to add some default value to our form. Imagine that you have some settings page where use have specified his own email. When you load this page you want to pre-fill input with his existing email. </p>
+
+<p>In order to do that you cane use another attribute -  <i>value</i></p>
+
+<pre><code>
+  <input name="name" id="email" value="me@domain.com">
+</code></pre>
+
+<p>Some people may also want to use it this to suggest user what he should put in the input but <strong>this is not a good practice</strong> simply because when you use value, user have to delete your default value first before he/she can insert it's data.</p>
+
+<p>In order to suggest user what input should be you can use another attribute - <i>placeholder</i> </p>
+
+<input name="name" id="name" placeholder="First name" >
+
+<img src="assets/placeholder.gif" alt="placeholder">
+
+<p>As you can see , placeholder immediately disappears when you start typing. What is also important - a placeholder, unlike "value" isn't submitted to form data when you submit the form. </p>
+
+  <p>Let's start learn more about <a href="3-input-types.html">input types.</a> </p>
