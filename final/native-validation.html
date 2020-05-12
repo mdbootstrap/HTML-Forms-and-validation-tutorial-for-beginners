@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Native validations</title>
+</head>
+<body>
+    <form action="results.html" method="GET" enctype="multipart/form-data">
+        <div>
+            <label for="email">E-mail</label>
+            <input type="email" name="email" id="email" >
+        </div>
+        <div>
+            <label for="age">Age:</label>
+            <input name="age" type="number" min="20" max="100" step="5">
+        </div>
+        <div>
+            <label for="date">Date:</label>
+            <input name="date" type="date" min="2020-05-15" max="2021-05-01">
+        </div>
+        <div>
+            <label for="name">Name</label>
+            <input name="name" id="name" type="text" minlength="5" maxlength="25" placeholder="Min 5 chars">
+        </div>
+        <div>
+            <label for="tel">Telephone</label>
+            <!-- 4 digits pattern  -->
+            <input name="tel" type="tel" pattern="[0-9]{4}" placeholder="####">
+        </div>
+        <button type="submit">Submit</button>
+    </form>
+</body>
+</html>

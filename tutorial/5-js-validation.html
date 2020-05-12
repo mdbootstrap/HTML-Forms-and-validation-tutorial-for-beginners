@@ -7,9 +7,167 @@
 
 
 <h1>JS Validation</h1>
-Coming soon...
+
+<p>Since native browser validation aren't perfect or you have some more strict rules, often you have to write your own validation for the form. </p>
+
+<p>Let's start with very basic user registration form:</p>
 
 
+<pre><code>
+    &lt;form id=&quot;user-form&quot; action=&quot;results.html&quot; method=&quot;GET&quot;&gt;&#13;&#10;        &lt;div&gt;&#13;&#10;            &lt;label for=&quot;name&quot;&gt;Name&lt;/label&gt;&#13;&#10;            &lt;input name=&quot;name&quot; id=&quot;name&quot; type=&quot;text&quot; &gt;&#13;&#10;        &lt;/div&gt;&#13;&#10;        &lt;div&gt;&#13;&#10;            &lt;label for=&quot;email&quot;&gt;Email&lt;/label&gt;&#13;&#10;            &lt;input name=&quot;email&quot; id=&quot;email&quot; type=&quot;email&quot; required&gt;&#13;&#10;        &lt;/div&gt;&#13;&#10;        &lt;div&gt;&#13;&#10;            &lt;label for=&quot;password&quot;&gt;Password:&lt;/label&gt;&#13;&#10;            &lt;input name=&quot;password&quot; id=&quot;password&quot; type=&quot;password&quot;&gt;&#13;&#10;        &lt;/div&gt;&#13;&#10;        &lt;div&gt;&#13;&#10;            &lt;label for=&quot;passwordRepeat&quot;&gt;Re-type password:&lt;/label&gt;&#13;&#10;            &lt;input name=&quot;passwordRepeat&quot; id=&quot;passwordRepeat&quot; type=&quot;password&quot;&gt;&#13;&#10;        &lt;/div&gt;&#13;&#10;        &lt;p class=&quot;status&quot;&gt;&lt;/p&gt;&#13;&#10;        &lt;button id=&quot;resetBtn&quot;&gt;Reset&lt;/button&gt;&#13;&#10;        &lt;button id=&quot;submitBtn&quot; type=&quot;submit&quot;&gt;Submit&lt;/button&gt;
+
+</code></pre>
+
+
+<p>Let's start with some constants, listeners and function placeholders:</p>
+
+
+<pre><code>
+    &lt;script&gt;&#13;&#10;        const submitBtn = document.getElementById(&apos;submitBtn&apos;).addEventListener(&apos;click&apos;, send);&#13;&#10;        const resetBtn = document.getElementById(&apos;resetBtn&apos;).addEventListener(&apos;click&apos;, reset);&#13;&#10;        const form = document.getElementById(&apos;user-form&apos;);&#13;&#10;&#13;&#10;        function send(ev) {}&#13;&#10;        function reset() {}    &#13;&#10;&#13;&#10;    &lt;/script&gt;
+</code></pre>
+
+
+<h2>Reset form</h2>
+
+<p>You already know that you can reset form using type="reset", but let's you should know that you can also do that using JavaScript:</p>
+
+<p>Function is very simple and uses <i>form</i> variable which is assigned to our form:</p>
+
+<pre><code>
+    function reset(){
+        form.reset();
+    }
+</code></pre>
+
+<p><strong>Note:</strong> that we do not use type="reset" in our reset button code.</p>
+
+<h2>Stop event submission</h2>
+
+
+<p>As you remember whenever we submit our form browser redirect us to either the same page or page specified in <i>action</i> property.</p>
+
+<p>Since we want to perform our validation first we have to prevent from reloading the page. We will use event.prevent default</p>
+
+
+<pre><code>
+    function send(event) {
+        event.preventDefault();
+    }
+
+</code></pre>
+
+
+<p>This will tell our browser to stop propagation of our click. </p>
+
+
+<h2>Cardinality check </h2>
+
+
+<p>We can very easily check whether our input is empty using JS, but first lets create some variables for each input as well as small paragraph where we will be displaying error messages</p>
+
+<pre><code>
+    
+    const name = document.getElementById('name').value;
+    const email = document.getElementById('email').value;
+    const password = document.getElementById('password').value;
+    const passwordRepeat = document.getElementById('passwordRepeat').value;
+    const status = document.querySelector('.status');
+</code></pre>
+
+<p>Now we can check whether name is empty and provide feedback to the user:</p>
+
+<pre><code>
+    if (name == "") {
+        status.innerText = "Name cannot be empty";
+        return false;
+    }
+</code></pre>
+
+<p>In case our name is empty, we will display a proper status and return false</p>
+
+<img src="assets/jsname.gif" alt="js required validaiton">
+
+
+
+<h2>Email vaildation</h2>
+
+
+<p>In n case of our email, we will check two condition:
+
+    <ol>
+        <li>Whether field is empty (as above)</li>
+        <li>Whether email has correct syntax</li>
+    </ol>
+</p>
+
+<p>Code:</p>
+
+
+<pre><code>
+    if (email == "") {
+        status.innerText = "Email cannot be empty";
+        return false;
+    } else {
+        var re =
+            /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+        if (!re.test(email)) {
+            status.innerText = "Email format invalid";
+            return false;
+        }
+    } 
+</code></pre>
+
+<p>This regular expression  (shortened as regex) is a sequence of characters that define a search pattern. In our case it's checking against email pattern.  </p>
+
+<p>We will have tutorial dedicated to regex so we will not get into details on how exactly it works now.</p>
+
+
+<h2>Compare passwords</h2>
+
+<p>Finally, we want our user to pass password two times to make sure that he won't make mistake in it. Again we will perform two checks:
+
+    <ol>
+        <li>Check if both fields are filled</li>
+        <li>Verify if they are the same</li>
+    </ol>
+    
+<pre><code>
+    if (passwordRepeat == "" || password == "") {
+        status.innerText = "Provide both passwords";
+        return false;
+    } 
+    if (password != passwordRepeat){
+        status.innerText = "Passwords aren't same";
+        return false;
+    }
+</code></pre>
+
+<p>Note: 
+
+    <ul>
+        <li>We use || (OR) to verify two conditions in 1 IF statement</li>
+        <li>We compare two values to determine whether use typed the same</li>
+    </ul>
+</p>
+
+<h2>Form submission</h2>
+
+<p>Finally, if all validation are passed (non returned false), we can send or form using submit() function:</p>
+
+<pre><code>
+    status.innerText = "Sending...."
+    form.submit();
+</code></pre>
+
+</p>
+
+<img src="assets/allValidations.gif" alt="All validations">
+
+<h2>All validations together:</h2>
+
+<pre><code>
+&#13;&#10;    &lt;script&gt;&#13;&#10;        const submitBtn = document.getElementById(&apos;submitBtn&apos;).addEventListener(&apos;click&apos;, send);&#13;&#10;        const resetBtn = document.getElementById(&apos;resetBtn&apos;).addEventListener(&apos;click&apos;, reset);&#13;&#10;        const form = document.getElementById(&apos;user-form&apos;);&#13;&#10;&#13;&#10;        function send(event) {&#13;&#10;            event.preventDefault();&#13;&#10;&#13;&#10;            const name = document.getElementById(&apos;name&apos;).value;&#13;&#10;            const email = document.getElementById(&apos;email&apos;).value;&#13;&#10;            const password = document.getElementById(&apos;password&apos;).value;&#13;&#10;            const passwordRepeat = document.getElementById(&apos;passwordRepeat&apos;).value;&#13;&#10;            const status = document.querySelector(&apos;.status&apos;);&#13;&#10;&#13;&#10;            if (name == &quot;&quot;) {&#13;&#10;                status.innerText = &quot;Name cannot be empty&quot;;&#13;&#10;                return false;&#13;&#10;            }&#13;&#10;&#13;&#10;            if (email == &quot;&quot;) {&#13;&#10;                status.innerText = &quot;Email cannot be empty&quot;;&#13;&#10;                return false;&#13;&#10;            } else {&#13;&#10;                var re =&#13;&#10;                    /^(([^&lt;&gt;()\[\]\\.,;:\s@&quot;]+(\.[^&lt;&gt;()\[\]\\.,;:\s@&quot;]+)*)|(&quot;.+&quot;))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;&#13;&#10;                if (!re.test(email)) {&#13;&#10;                    status.innerText = &quot;Email format invalid&quot;;&#13;&#10;                    return false;&#13;&#10;                }&#13;&#10;            } &#13;&#10;            if (passwordRepeat == &quot;&quot; || password == &quot;&quot;) {&#13;&#10;                status.innerText = &quot;Provide both passwords&quot;;&#13;&#10;                return false;&#13;&#10;            } &#13;&#10;            if (password != passwordRepeat){&#13;&#10;                status.innerText = &quot;Passwords aren&apos;t same&quot;;&#13;&#10;                return false;&#13;&#10;            }&#13;&#10;&#13;&#10;            status.innerText = &quot;Sending....&quot;&#13;&#10;            form.submit();&#13;&#10;        }&#13;&#10;&#13;&#10;        function reset(){&#13;&#10;            form.reset();&#13;&#10;        }&#13;&#10;    &lt;/script&gt; 
+</code></pre>
 
 <p>I also strongly encourage you to:
     <ul>

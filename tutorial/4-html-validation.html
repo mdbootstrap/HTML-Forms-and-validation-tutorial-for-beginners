@@ -7,7 +7,76 @@
 
 <h2>HTML Validation</h2>
 
-Coming soon...
+<p>As we mentioned in a previous lesson, some inputs offers you a built in validations:</p>
+
+
+<h2>E-mail</h2>
+
+<p>Test the following code:</p>
+
+<pre><code>
+    &lt;form action=&quot;results.html&quot; method=&quot;GET&quot; enctype=&quot;multipart/form-data&quot;&gt;&#13;&#10;        &lt;div&gt;&#13;&#10;            &lt;label for=&quot;email&quot;&gt;E-mail&lt;/label&gt;&#13;&#10;            &lt;input type=&quot;email&quot; name=&quot;email&quot; id=&quot;email&quot;&gt;&#13;&#10;        &lt;/div&gt;&#13;&#10;        &lt;button type=&quot;submit&quot;&gt;Submit&lt;/button&gt;&#13;&#10;    &lt;/form&gt;
+</code></pre>
+
+<p>When you use <i>email</i> type, browser will check whether provided string has @ in it. Not to the best validation, that's why we will learn how to do a proper email validation using JavaScript soon:</p>
+
+<img src="assets/email.gif" alt="Email validations">
+
+
+<h2>Min / Max </h2>
+
+<p>As you remember, when we used min / max value browser will also take care of it:</p>
+
+
+<pre><code>
+    <div>
+        <label for="age">Age:</label>
+        <input name="age" type="number" min="20" max="100" step="5">
+    </div>
+    <div>
+        <label for="date">Date:</label>
+        <input name="date" type="date" min="2020-05-15" max="2021-05-01">
+    </div>
+</code></pre>
+
+
+<img src="assets/minmaxvalidation.gif" alt="min max value">
+
+<h2>Min/Max length</h2>
+
+<p>We can also specify minimum length of provided data:</p>
+
+<pre><code>
+    &lt;div&gt;&#13;&#10;        &lt;label for=&quot;name&quot;&gt;Name&lt;/label&gt;&#13;&#10;        &lt;input name=&quot;name&quot; id=&quot;name&quot; type=&quot;text&quot; minlength=&quot;5&quot; maxlength=&quot;25&quot; placeholder=&quot;Min 5 chars&quot;&gt;&#13;&#10;    &lt;/div&gt;
+</code></pre>
+
+<img src="assets/minlegth.gif" alt="Min length">
+
+<h2>Cardinality</h2>
+
+<p>We can easily specify which fields are mandatory adding <i>required</i> attribute:</p>
+
+<pre><code>
+    <div>
+        <label for="email">E-mail</label>
+        <input type="email" name="email" id="email" required>
+    </div>
+</code></pre>
+
+<img src="assets/required.gif" alt="Required">
+
+
+<h2>Pattern</h2>
+<p>We can also define allowed patterns: </p>
+
+<pre><code>
+    &lt;div&gt;&#13;&#10;        &lt;label for=&quot;tel&quot;&gt;Telephone&lt;/label&gt;&#13;&#10;        &lt;!-- 4 digits pattern  --&gt;&#13;&#10;        &lt;input name=&quot;tel&quot; type=&quot;tel&quot; pattern=&quot;[0-9]{4}&quot; placeholder=&quot;####&quot;&gt;&#13;&#10;    &lt;/div&gt;
+</code></pre>
+
+<p>This wil ensure 4 digits pattern.</p>
+
+<img src="assets/pattern.gif" alt="Pattern">
+
 
 
 <p>Now you know how default validations works let's learn how to  <a href="5-js-validation.html">validate form using JS</a> <p>

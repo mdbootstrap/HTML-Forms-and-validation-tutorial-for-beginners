@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <form id="user-form" action="results.html" method="GET">
+        <div>
+            <label for="name">Name</label>
+            <input name="name" id="name" type="text" >
+        </div>
+        <div>
+            <label for="email">Email</label>
+            <input name="email" id="email" type="email" required>
+        </div>
+        <div>
+            <label for="password">Password:</label>
+            <input name="password" id="password" type="password">
+        </div>
+        <div>
+            <label for="passwordRepeat">Re-type password:</label>
+            <input name="passwordRepeat" id="passwordRepeat" type="password">
+        </div>
+        <p class="status"></p>
+        <button id="resetBtn">Reset</button>
+        <button id="submitBtn" type="submit">Submit</button>
+    </form>
+
+
+    <script>
+        const submitBtn = document.getElementById('submitBtn').addEventListener('click', send);
+        const resetBtn = document.getElementById('resetBtn').addEventListener('click', reset);
+        const form = document.getElementById('user-form');
+
+        function send(event) {
+            event.preventDefault();
+
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+            const passwordRepeat = document.getElementById('passwordRepeat').value;
+            const status = document.querySelector('.status');
+
+            if (name == "") {
+                status.innerText = "Name cannot be empty";
+                return false;
+            }
+
+            if (email == "") {
+                status.innerText = "Email cannot be empty";
+                return false;
+            } else {
+                var re =
+                    /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+                if (!re.test(email)) {
+                    status.innerText = "Email format invalid";
+                    return false;
+                }
+            } 
+            if (passwordRepeat == "" || password == "") {
+                status.innerText = "Provide both passwords";
+                return false;
+            } 
+            if (password != passwordRepeat){
+                status.innerText = "Passwords aren't same";
+                return false;
+            }
+
+            status.innerText = "Sending...."
+            form.submit();
+        }
+
+        function reset(){
+            form.reset();
+        }
+    </script>
+</body>
+
+</html>
